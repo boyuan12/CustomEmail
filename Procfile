@@ -1,0 +1,1 @@
+web: gunicorn CustomEmail.wsgi —-log-file -
