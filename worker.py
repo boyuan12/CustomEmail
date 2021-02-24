@@ -13,6 +13,7 @@ else:
     engine = create_engine(os.getenv("DATABASE_URL"))
     db = scoped_session(sessionmaker(bind=engine))
     c = db()
+    conn = c
 
 email_list = []
 
@@ -28,6 +29,8 @@ def get_email():
     while True:
         t = current_milli_time()
         emails = s.get(f"https://api.testmail.app/api/json?apikey={TESTMAIL_API_KEY}&namespace=5v6g6&tag=forwardemail&timestamp_from={t}&livequery=true")
+
+        print(emails)
 
 
         if [str(emails.json()["emails"][0]["timestamp"]), emails.json()["emails"][0]["subject"], emails.json()["emails"][0]["to"], emails.json()["emails"][0]["from"]] not in email_list:
