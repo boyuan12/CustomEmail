@@ -39,7 +39,7 @@ def logout_view(request):
 
 @login_required(login_url='/login/')
 def index(request):
-    emails = Email.objects.filter(to_email=f"{request.user.username}@devwithme.xyz")
+    emails = Email.objects.filter(to_email=f"{request.user.username}@kinetic-kowalski.online")
     return render(request, "dashboard/index.html", {
         "emails": emails
     })
@@ -48,9 +48,9 @@ def index(request):
 @login_required(login_url='/login/')
 def send(request):
     if request.method == "POST":
-        send_mail(f"{request.user.username}@devwithme.xyz", request.POST["receiver"], request.POST["subject"], request.POST["body"])
+        send_mail(f"{request.user.username}@kinetic-kowalski.online", request.POST["receiver"], request.POST["subject"], request.POST["body"])
 
-        Email(timestamp=str(current_milli_time()), subject=request.POST["subject"], body=request.POST["body"], from_email=f"{request.user.username}@devwithme.xyz", to_email=request.POST["receiver"]).save()
+        Email(timestamp=str(current_milli_time()), subject=request.POST["subject"], body=request.POST["body"], from_email=f"{request.user.username}@kinetic-kowalski.online", to_email=request.POST["receiver"]).save()
 
         return HttpResponse("Sent successfully!")
 
