@@ -6,14 +6,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 
-if bool(os.getenv("DEVELOPMENT")):
-    conn = sqlite3.connect("../../git-repo/account/db.sqlite3")
-    c = conn.cursor()
-else:
-    engine = create_engine(os.getenv("DATABASE_URL"))
-    db = scoped_session(sessionmaker(bind=engine))
-    c = db()
-    conn = c
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
+c = db()
+conn = c
 
 email_list = []
 
