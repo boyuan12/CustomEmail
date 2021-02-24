@@ -1,0 +1,17 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+    Create your own Doogle Account
+{% endblock %}
+
+{% block main %}
+    <h1>Dashboard</h1>
+    {% for email in emails %}
+        <ul>
+            <li>From: {{ email.from_email }}</li>
+            <li>To: {{ email.to_email }}</li>
+            <li>Subject: {{ email.subject }}</li>
+            <li>Body: {{ email.body|safe }}</li>
+        </ul>
+    {% endfor %}
+{% endblock %}
